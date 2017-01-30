@@ -2,16 +2,19 @@ package com.example.android.popularmovies.task;
 
 import android.os.AsyncTask;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by dan.ariton on 27-Jan-17.
  */
 
-public class MoviePosterTask extends AsyncTask<String, Void, Void> {
+public class MovieDetailTask extends AsyncTask<String, Void, Void> {
 
     private ImageView posterImageView;
+    private TextView titleTextView;
 
-    public MoviePosterTask(final ImageView posterImageView) {
+
+    public MovieDetailTask(final ImageView posterImageView) {
         this.posterImageView = posterImageView;
     }
 

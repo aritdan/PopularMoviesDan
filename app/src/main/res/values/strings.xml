@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">PopularMovies</string>
+
+    <!-- MENU ORDER ITEMS -->
+    <string name="order_popular">Popular</string>
+    <string name="order_top_rated">Top rated</string>
+
+    <!-- DETAIL HEADER -->
+    <string name="detail_rel_date">Release Date:</string>
+    <string name="detail_vote_avg">Vote Average:</string>
+    <string name="detail_synopsis">Synopsis:</string>
+
 </resources>
