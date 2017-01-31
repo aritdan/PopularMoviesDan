@@ -2,10 +2,10 @@ package com.example.android.popularmovies.task;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
+import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.adapter.MovieGridArrayAdapter;
-import com.example.android.popularmovies.moviedb.enums.ContentTypeEnum;
-import com.example.android.popularmovies.moviedb.enums.OrderTypeEnum;
 import com.example.android.popularmovies.moviedb.http.JsonConverter;
 import com.example.android.popularmovies.moviedb.http.MovieDataDAO;
 import com.example.android.popularmovies.moviedb.pojo.MovieListItem;
@@ -20,20 +20,20 @@ public class MovieListTask extends AsyncTask<Void, Void, List<MovieListItem>> {
 
     private RecyclerView movieGridRecyclerView;
 
-    private ContentTypeEnum contentTypeEnum;
-    private OrderTypeEnum orderTypeEnum;
+    private String contentType;
+    private String orderType;
 
-    public MovieListTask(final RecyclerView movieGridRecyclerView, final ContentTypeEnum contentTypeEnum,
-                         final OrderTypeEnum orderTypeEnum) {
+    public MovieListTask(final RecyclerView movieGridRecyclerView, final String contentType,
+                         final String orderType) {
         this.movieGridRecyclerView = movieGridRecyclerView;
-        this.contentTypeEnum = contentTypeEnum;
-        this.orderTypeEnum = orderTypeEnum;
+        this.contentType = contentType;
+        this.orderType = orderType;
     }
 
     @Override
     protected List<MovieListItem> doInBackground(Void... voids) {
         final MovieDataDAO movieDataDAO = new MovieDataDAO();
-        final String urlResult = movieDataDAO.getPopularMovieImgLocation(contentTypeEnum, orderTypeEnum);
+        final String urlResult = movieDataDAO.getMovieList(contentType, orderType);
         final List<MovieListItem> movieListItems = JsonConverter.getMovieListItemsFromJsonString(urlResult);
         return movieListItems;
     }
@@ -41,6 +41,11 @@ public class MovieListTask extends AsyncTask<Void, Void, List<MovieListItem>> {
     @Override
     protected void onPostExecute(List<MovieListItem> movieListItems) {
         super.onPostExecute(movieListItems);
-        movieGridRecyclerView.setAdapter(new MovieGridArrayAdapter(movieListItems));
+        if (movieListItems == null || movieListItems.isEmpty()) {
+            Toast.makeText(movieGridRecyclerView.getContext(), R.string.movie_list_error, Toast.LENGTH_LONG)
+                    .show();
+        } else {
+            movieGridRecyclerView.setAdapter(new MovieGridArrayAdapter(movieListItems));
+        }
     }
 }

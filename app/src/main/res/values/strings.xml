@@ -10,4 +10,7 @@
     <string name="detail_vote_avg">Vote Average:</string>
     <string name="detail_synopsis">Synopsis:</string>
 
+    <!-- ERROR MESSAGE -->
+    <string name="movie_list_error">Error: no entries found!</string>
+
 </resources>

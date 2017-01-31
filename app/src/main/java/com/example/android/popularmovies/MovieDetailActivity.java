@@ -8,41 +8,54 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.popularmovies.moviedb.constants.MovieDbConstants;
+import com.example.android.popularmovies.moviedb.pojo.MovieListItem;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieDetailActivity extends AppCompatActivity {
 
-    private ImageView posterImageView;
-    private TextView titleTextView;
-    private TextView releaseDateTextView;
-    private TextView voteAvgTextView;
-    private TextView synopsisTextView;
+    @BindView(R.id.iv_detail_poster)
+    protected ImageView posterImageView;
+
+    @BindView(R.id.tv_detail_title)
+    protected TextView titleTextView;
+
+    @BindView(R.id.tv_detail_release_date)
+    protected TextView releaseDateTextView;
+
+    @BindView(R.id.tv_detail_vote_avg)
+    protected TextView voteAvgTextView;
+
+    @BindView(R.id.tv_detail_synopsis)
+    protected TextView synopsisTextView;
+
+    @BindString(R.string.detail_synopsis)
+    protected String synopsisHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+        ButterKnife.bind(this);
 
         final Intent intent = getIntent();
+        final MovieListItem movieListItem = intent.getParcelableExtra(MovieDbConstants.MOVIE_ITEM);
 
-        posterImageView = (ImageView) findViewById(R.id.iv_detail_poster);
         Picasso.with(this)
-                .load("http://image.tmdb.org/t/p/w500/" + intent.getStringExtra(MovieDbConstants.MOVIE_POSTER_PATH))
+                .load("http://image.tmdb.org/t/p/w500/" + movieListItem.getPosterUrl())
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
                 .into(posterImageView);
 
-        titleTextView = (TextView) findViewById(R.id.tv_detail_title);
-        titleTextView.setText(intent.getStringExtra(MovieDbConstants.MOVIE_ORIGINAL_TITLE));
-
-        releaseDateTextView = (TextView) findViewById(R.id.tv_detail_release_date);
-        releaseDateTextView.setText(intent.getStringExtra(MovieDbConstants.MOVIE_RELEASE_DATE));
-
-        voteAvgTextView = (TextView) findViewById(R.id.tv_detail_vote_avg);
-        voteAvgTextView.setText(intent.getStringExtra(MovieDbConstants.MOVIE_VOTE_AVERAGE));
-
-        synopsisTextView = (TextView) findViewById(R.id.tv_detail_synopsis);
-        synopsisTextView.setText(intent.getStringExtra(MovieDbConstants.MOVIE_OVERVIEW));
+        titleTextView.setText(movieListItem.getTitle());
+        releaseDateTextView.setText(movieListItem.getReleaseDate());
+        voteAvgTextView.setText(movieListItem.getVoteAverage());
+        synopsisTextView.setText(synopsisHeader + movieListItem.getOverview());
 
     }
 }

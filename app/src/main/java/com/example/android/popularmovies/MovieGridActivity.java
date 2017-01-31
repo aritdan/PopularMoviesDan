@@ -1,7 +1,7 @@
 package com.example.android.popularmovies;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -9,8 +9,7 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.example.android.popularmovies.adapter.MovieGridArrayAdapter;
-import com.example.android.popularmovies.moviedb.enums.ContentTypeEnum;
-import com.example.android.popularmovies.moviedb.enums.OrderTypeEnum;
+import com.example.android.popularmovies.moviedb.constants.MovieDbConstants;
 import com.example.android.popularmovies.moviedb.pojo.MovieListItem;
 import com.example.android.popularmovies.task.MovieListTask;
 
@@ -33,7 +32,7 @@ public class MovieGridActivity extends AppCompatActivity {
         movieGridRecyclerView.setHasFixedSize(true);
         movieGridRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         movieGridRecyclerView.setAdapter(movieGridArrayAdapter);
-        new MovieListTask(movieGridRecyclerView, ContentTypeEnum.MOVIE, OrderTypeEnum.POPULAR).execute();
+        new MovieListTask(movieGridRecyclerView, MovieDbConstants.CONTENT_TYPE_MOVIE, MovieDbConstants.ORDER_TYPE_POPULAR).execute();
 
     }
 
@@ -50,10 +49,10 @@ public class MovieGridActivity extends AppCompatActivity {
         boolean optionSelectedResult = super.onOptionsItemSelected(item);
 
         if (item.getItemId() == R.id.mi_order_popular) {
-            new MovieListTask(movieGridRecyclerView, ContentTypeEnum.MOVIE, OrderTypeEnum.POPULAR).execute();
+            new MovieListTask(movieGridRecyclerView, MovieDbConstants.CONTENT_TYPE_MOVIE, MovieDbConstants.ORDER_TYPE_POPULAR).execute();
             optionSelectedResult = true;
         } else if (item.getItemId() == R.id.mi_order_top_rated) {
-            new MovieListTask(movieGridRecyclerView, ContentTypeEnum.MOVIE, OrderTypeEnum.TOP_RATED).execute();
+            new MovieListTask(movieGridRecyclerView, MovieDbConstants.CONTENT_TYPE_MOVIE, MovieDbConstants.ORDER_TYPE_TOP_RATED).execute();
             optionSelectedResult = true;
         }
 

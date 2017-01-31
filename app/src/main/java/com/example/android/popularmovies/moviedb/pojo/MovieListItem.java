@@ -1,10 +1,13 @@
 package com.example.android.popularmovies.moviedb.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by dan.ariton on 29-Jan-17.
  */
 
-public class MovieListItem {
+public class MovieListItem implements Parcelable {
 
     private String movieId;
     private String title;
@@ -12,6 +15,30 @@ public class MovieListItem {
     private String voteAverage;
     private String overview;
     private String posterUrl;
+
+    public MovieListItem() {
+    }
+
+    protected MovieListItem(Parcel in) {
+        movieId = in.readString();
+        title = in.readString();
+        releaseDate = in.readString();
+        voteAverage = in.readString();
+        overview = in.readString();
+        posterUrl = in.readString();
+    }
+
+    public static final Creator<MovieListItem> CREATOR = new Creator<MovieListItem>() {
+        @Override
+        public MovieListItem createFromParcel(Parcel in) {
+            return new MovieListItem(in);
+        }
+
+        @Override
+        public MovieListItem[] newArray(int size) {
+            return new MovieListItem[size];
+        }
+    };
 
     public String getMovieId() {
         return movieId;
@@ -59,5 +86,20 @@ public class MovieListItem {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(movieId);
+        parcel.writeString(title);
+        parcel.writeString(releaseDate);
+        parcel.writeString(voteAverage);
+        parcel.writeString(overview);
+        parcel.writeString(posterUrl);
     }
 }

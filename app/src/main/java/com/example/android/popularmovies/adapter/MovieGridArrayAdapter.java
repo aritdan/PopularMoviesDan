@@ -63,18 +63,15 @@ public class MovieGridArrayAdapter extends RecyclerView.Adapter<MovieGridArrayAd
         public void bind(final MovieListItem movieListItem) {
             Picasso.with(posterImageView.getContext())
                     .load("http://image.tmdb.org/t/p/w185/" + movieListItem.getPosterUrl())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
                     .into(posterImageView);
 
             posterImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     final Intent intent = new Intent(view.getContext(), MovieDetailActivity.class);
-                    intent.putExtra(MovieDbConstants.MOVIE_POSTER_PATH, movieListItem.getPosterUrl());
-                    intent.putExtra(MovieDbConstants.MOVIE_ORIGINAL_TITLE, movieListItem.getTitle());
-                    intent.putExtra(MovieDbConstants.MOVIE_RELEASE_DATE, movieListItem.getReleaseDate());
-                    intent.putExtra(MovieDbConstants.MOVIE_VOTE_AVERAGE, movieListItem.getVoteAverage());
-                    intent.putExtra(MovieDbConstants.MOVIE_OVERVIEW, movieListItem.getOverview());
-
+                    intent.putExtra(MovieDbConstants.MOVIE_ITEM, movieListItem);
                     view.getContext().startActivity(intent);
                 }
             });

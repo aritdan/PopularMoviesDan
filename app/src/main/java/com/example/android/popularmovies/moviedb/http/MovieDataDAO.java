@@ -4,18 +4,10 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.android.popularmovies.moviedb.constants.MovieDbConstants;
-import com.example.android.popularmovies.moviedb.enums.ContentTypeEnum;
-import com.example.android.popularmovies.moviedb.enums.OrderTypeEnum;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,16 +16,15 @@ import java.util.Scanner;
 
 public class MovieDataDAO {
 
-    public static String getPopularMovieImgLocation(final ContentTypeEnum contentTypeEnum,
-                                                          final OrderTypeEnum orderTypeEnum) {
+    public static String getMovieList(final String contentType,
+                                      final String orderType) {
         String movieJsonList = null;
-        List<String> movieUrlList = new ArrayList<>();
 
         try {
             final Uri popularMoviesUri = Uri.parse(MovieDbConstants.URL_BASE).buildUpon()
                     .appendPath(MovieDbConstants.URL_VERSION_3)
-                    .appendPath(contentTypeEnum.getUrlPath())
-                    .appendPath(orderTypeEnum.getUrlPath())
+                    .appendPath(contentType)
+                    .appendPath(orderType)
                     .appendQueryParameter(MovieDbConstants.URL_API_KEY_QUERY, MovieDbConstants.API_KEY_V3)
                     .build();
 

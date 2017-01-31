@@ -23,15 +23,18 @@ public class JsonConverter {
     public static List<MovieListItem> getMovieListItemsFromJsonString(final String listJson) {
         Log.d(TAG, "ENTER getMovieListItemsFromJsonString()");
         Log.d(TAG, "JSON OF LIST IS:");
-        Log.d(TAG, listJson);
+        Log.d(TAG, listJson != null ? listJson : "");
         final List<MovieListItem> movieListItems = new ArrayList<>();
 
         try {
-            final JSONObject movieDb = new JSONObject(listJson);
-            final JSONArray movieJsonArray = movieDb.getJSONArray("results");
+            if (listJson != null && !listJson.trim().equals("")) {
 
-            for (int i = 0; i < movieJsonArray.length(); i++) {
-                movieListItems.add(getMovieListItemFromJsonObject(movieJsonArray.getJSONObject(i)));
+                final JSONObject movieDb = new JSONObject(listJson);
+                final JSONArray movieJsonArray = movieDb.getJSONArray("results");
+
+                for (int i = 0; i < movieJsonArray.length(); i++) {
+                    movieListItems.add(getMovieListItemFromJsonObject(movieJsonArray.getJSONObject(i)));
+                }
             }
         } catch (JSONException e) {
             Log.d(TAG, "ERROR:", e);
