@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
 
 import com.example.android.popularmovies.adapter.MovieGridArrayAdapter;
 import com.example.android.popularmovies.moviedb.constants.MovieDbConstants;
@@ -15,18 +14,19 @@ import com.example.android.popularmovies.task.MovieListTask;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieGridActivity extends AppCompatActivity {
 
-    private RecyclerView movieGridRecyclerView;
-    private ProgressBar movieLoadProgressBar;
+    @BindView(R.id.rv_movie_grid)
+    protected RecyclerView movieGridRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_grid);
-
-        movieGridRecyclerView = (RecyclerView) findViewById(R.id.rv_movie_grid);
-        movieLoadProgressBar = (ProgressBar) findViewById(R.id.pb_movie_load);
+        ButterKnife.bind(this);
 
         final MovieGridArrayAdapter movieGridArrayAdapter = new MovieGridArrayAdapter(new ArrayList<MovieListItem>());
         movieGridRecyclerView.setHasFixedSize(true);

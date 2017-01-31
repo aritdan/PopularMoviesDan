@@ -1,7 +1,6 @@
 package com.example.android.popularmovies;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -10,8 +9,6 @@ import android.widget.TextView;
 import com.example.android.popularmovies.moviedb.constants.MovieDbConstants;
 import com.example.android.popularmovies.moviedb.pojo.MovieListItem;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import butterknife.BindString;
 import butterknife.BindView;
