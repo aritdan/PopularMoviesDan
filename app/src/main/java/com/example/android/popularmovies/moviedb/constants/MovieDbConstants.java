@@ -6,15 +6,12 @@ package com.example.android.popularmovies.moviedb.constants;
 
 public class MovieDbConstants {
 
-    public static final String API_KEY_V3 = "d401bcf9930b610153471fdd9e4596ed";
+    public static final String API_KEY_V3 = "api_key";
 
     // QUERY URL
     public static final String URL_API_KEY_QUERY = "api_key";
     public static final String URL_BASE = "http://api.themoviedb.org/";
     public static final String URL_VERSION_3 = "3";
-    public static final String URL_MOVIE = "movie";
-    public static final String URL_POPULAR = "popular";
-    public static final String URL_TOP_RATED = "top_rated";
 
     // JSON PARAMS
     // MOVIE LIST
