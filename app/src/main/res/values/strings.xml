@@ -4,11 +4,22 @@
     <!-- MENU ORDER ITEMS -->
     <string name="order_popular">Popular</string>
     <string name="order_top_rated">Top rated</string>
+    <string name="type_favorites">Favorites</string>
 
-    <!-- DETAIL HEADER -->
-    <string name="detail_rel_date">Release Date:</string>
-    <string name="detail_vote_avg">Vote Average:</string>
-    <string name="detail_synopsis">Synopsis:</string>
+    <!-- DETAIL LABEL -->
+    <string name="detail_rel_date">Release Date</string>
+    <string name="detail_vote_avg">Vote Average</string>
+    <string name="detail_synopsis">Synopsis</string>
+
+    <!-- CONTENT DESCRIPTION -->
+    <string name="content_detail_poster">Poster</string>
+
+    <string name="detail_favorite_label">Favourite</string>
+    <string name="detail_favorite_label_off">Unfavourite</string>
+
+    <!-- DETAIL REVIEW LABEL -->
+    <string name="review_author">Author</string>
+    <string name="review_content">Review</string>
 
     <!-- ERROR MESSAGE -->
     <string name="movie_list_error">Error: no entries found!</string>

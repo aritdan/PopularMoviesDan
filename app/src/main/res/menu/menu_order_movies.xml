@@ -11,4 +11,9 @@
         android:id="@+id/mi_order_top_rated"
         />
 
+    <item
+        android:title="@string/type_favorites"
+        android:id="@+id/mi_favorites"
+        />
+
 </menu>

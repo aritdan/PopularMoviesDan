@@ -4,14 +4,17 @@
     package="com.example.android.popularmovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MovieGridActivity"
+        android:theme="@style/AppTheme"
+        android:name=".PopularMoviesApplication">
+        <activity android:name=".grid.activity.MovieGridActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MovieDetailActivity"
-                android:parentActivityName=".MovieGridActivity"
-            tools:targetApi="jelly_bean">
+        <activity android:name=".details.activity.MovieDetailActivity"
+                android:parentActivityName=".grid.activity.MovieGridActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MovieDetailActivity" />
+                android:value=".details.activity.MovieDetailActivity" />
         </activity>
+        <provider
+            android:authorities="com.example.android.popularmovies"
+            android:name=".favorite.contentprovider.FavoritesContentProvider"
+            android:exported="false" />
     </application>
 
 </manifest>
